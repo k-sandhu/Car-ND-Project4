@@ -91,28 +91,32 @@ I applied this distortion correction to the test image using the `cv2.undistort(
 [image4]: ./output_images/straight_lines2_binary.jpg "Color and Sobel Transform Test Image"
 [image5]: ./output_images/straight_lines2_bin_warp.jpg "Binary warped image 1"
 [image6]: ./output_images/straight_lines1_bin_warp.jpg "Binary warped image 2"
+[image6]: ./output_images/straight_lines1_bin_warp.jpg "Binary warped image 2"
+[image7]: ./output_images/frame-2017_11_13_17_48_23_549-0.jpg "Frame with lanes marked"
 
+---------------------------
 ![alt text][image1]
+---------------------------
 ![alt text][image2]
+---------------------------
 
-
--------------------------------------------------------------------------------------------
 
 ### Pipeline (single images)
 
 #### 1. Provide an example of a distortion-corrected image.
 
 Image below provides an example of distortion corrected image. Grid lines help us see the difference between distorted and undistorted images.
+---------------------------
 ![alt text][image3]
-
+---------------------------
 #### 2. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image.  Provide an example of a binary image result.
 
 I used a combination of color and gradient thresholds to generate a binary image (thresholding steps at lines 7 through 50 in `utils.py`). I tried various thresholding
  limits to get to the result. Sobel gradients are calculated using `cv2.Sobel()` after transforming the image to HLS color space. I found that limits (5,90) gave
   an optimal result. Threshold value of (55,255) was used for S channel thresholding. Here's an example of my output for this step.
-
+---------------------------
 ![alt text][image4]
-
+---------------------------
 #### 3. Describe how (and identify where in your code) you performed a perspective transform and provide an example of a transformed image.
 
 The code for my perspective transform includes a function called `perspective_transform()`, which appears in lines 62 through 87 in the file `utils.py`.  I hardcoded the source and destination points in the following manner:
@@ -135,8 +139,11 @@ This resulted in the following source and destination points:
 | 1280, 720      | 1280, 720       |
 
 I verified that my perspective transform was working as expected by drawing the `src` and `dst` points onto a test image and its warped counterpart to verify that the lines appear parallel in the warped image.
+---------------------------
 ![alt text][image5]
+---------------------------
 ![alt text][image6]
+---------------------------
 
 #### 4. Describe how (and identify where in your code) you identified lane-line pixels and fit their positions with a polynomial?
 
@@ -185,8 +192,6 @@ I added a blue dot to the video to tracks center of the lane.
 I implemented this step in lines 7 through 38 in my code in `main.py` in the function `pipeline()`.  Here is an example of my result on a test image:
 
 ![alt text][image7]
-
----
 
 ### Pipeline (video)
 
